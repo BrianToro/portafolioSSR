@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 //Componentes
 import Header from "../components/Header";
+import Main from "../components/Main";
 
 
 //redux
@@ -16,6 +17,7 @@ const List = ({  }) => {
         <Fragment>
             <div className="w-full h-screen">
                 <Header />
+                <Main />
             </div>
             
         </Fragment>
