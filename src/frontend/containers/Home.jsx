@@ -11,7 +11,7 @@ import { connect } from "react-redux";
 //Css
 import "../assets/styles/App.scss";
 
-const List = ({ data, page, history }) => {
+const List = ({  }) => {
     return (
         <Fragment>
             <div className="w-full h-screen">
