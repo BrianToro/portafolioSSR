@@ -77,3 +77,6 @@ dist/
 
 #bundle
 src/server/public
+
+#tailwindcss
+src/fronted/assets/styles/App.scss

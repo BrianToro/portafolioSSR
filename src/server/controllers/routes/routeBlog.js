@@ -1,6 +1,6 @@
 const express = require("express");
 const BlogService = require("../../services/blog");
-const { check, validationResult } = require("express-validator");
+const {check, validationResult} = require("express-validator");
 
 function blogAPI(app) {
     //Iniciaslizaciones del router
@@ -12,9 +12,9 @@ function blogAPI(app) {
 
     //Traer todas las entradas del blog
     router.get("/", async (req, res, next) => {
-        const { tag } = req.query;
+        const {tag} = req.query;
         try {
-            const posts = await blogService.getPosts({ tag });
+            const posts = await blogService.getPosts({tag});
             res.status(200).json({
                 data: posts,
                 message: "Posts listed",
@@ -26,9 +26,9 @@ function blogAPI(app) {
 
     //Trae una entrada del blog
     router.get("/:postId", async (req, res, next) => {
-        const { postId } = req.params;
+        const {postId} = req.params;
         try {
-            const post = await blogService.getPost({ postId });
+            const post = await blogService.getPost({postId});
             res.status(200).json({
                 data: post,
                 message: "Post retrieved",
@@ -44,22 +44,22 @@ function blogAPI(app) {
         [
             check("post_title")
                 .isString()
-                .isLength({ min: 10, max: 50 })
+                .isLength({min: 10, max: 50})
                 .notEmpty(),
             check("post_description")
                 .isString()
-                .isLength({ min: 10, max: 500 })
+                .isLength({min: 10, max: 500})
                 .notEmpty(),
             check("post_img").isURL().notEmpty(),
             check("tags").isArray().notEmpty(),
             check("publicated_at").isString().notEmpty(),
         ],
         async (req, res, next) => {
-            const { body: post } = req;
+            const {body: post} = req;
             try {
                 const errors = validationResult(req);
                 if (!errors.isEmpty()) {
-                    return res.status(422).json({ errors: errors.array() });
+                    return res.status(422).json({errors: errors.array()});
                 }
                 console.log(req.body.project_title);
                 const createdPostId = await blogService.createPost({
@@ -77,7 +77,7 @@ function blogAPI(app) {
 
     //Elimina una nueva entrada del blog
     router.delete("/:postId", async (req, res, next) => {
-        const { projectId } = req.params;
+        const {projectId} = req.params;
         try {
             const deletePostId = await blogService.deletePost({
                 postId,
@@ -97,17 +97,17 @@ function blogAPI(app) {
         [
             check("post_title")
                 .isString()
-                .isLength({ min: 10, max: 50 }),
+                .isLength({min: 10, max: 50}),
             check("post_description")
                 .isString()
-                .isLength({ min: 10, max: 500 }),
+                .isLength({min: 10, max: 500}),
             check("post_img").isURL(),
             check("tags").isArray(),
             check("publicated_at").isString(),
         ],
         async (req, res, next) => {
-            const { postId } = req.params;
-            const { body: post } = req;
+            const {postId} = req.params;
+            const {body: post} = req;
             try {
                 const updatePostId = await blogService.updatePost({
                     postId,
@@ -124,4 +124,4 @@ function blogAPI(app) {
     );
 }
 
-module.exports = { blogAPI }
+module.exports = {blogAPI}

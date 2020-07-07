@@ -15,7 +15,7 @@ import "../assets/styles/App.scss";
 const List = ({  }) => {
     return (
         <Fragment>
-            <div className="w-full h-screen">
+            <div className="w-full h-screen bg-">
                 <Header />
                 <Main />
             </div>

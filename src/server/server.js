@@ -1,21 +1,21 @@
 import express from "express";
 import webpack from "webpack";
 import React from "react";
-import { renderToString } from "react-dom/server";
-import { Provider } from "react-redux";
-import { createStore } from "redux";
-import { renderRoutes } from "react-router-config";
-import { StaticRouter } from "react-router-dom";
+import {renderToString} from "react-dom/server";
+import {Provider} from "react-redux";
+import {createStore} from "redux";
+import {renderRoutes} from "react-router-config";
+import {StaticRouter} from "react-router-dom";
 import helmet from "helmet";
 import serverRoutes from "../frontend/routes/serverRoutes";
 import reducer from "../frontend/reducers";
 import getManifest from "./getManifest";
-import { config } from "./config/index.js";
+import {config} from "./config/index.js";
 import cors from "cors";
-import { projectsAPI } from "./controllers/routes/routeProjects";
-import{ blogAPI } from './controllers/routes/routeBlog';
-import { logErrors, wrapErrors ,errorHandler } from './controllers/middlewares/errorHandler';
-import { notFoundHandler } from './controllers/middlewares/notFoundHandler';
+import {projectsAPI} from "./controllers/routes/routeProjects";
+import {blogAPI} from './controllers/routes/routeBlog';
+import {errorHandler, logErrors, wrapErrors} from './controllers/middlewares/errorHandler';
+import {notFoundHandler} from './controllers/middlewares/notFoundHandler';
 
 //Inicio del servidor
 const app = express();
@@ -64,8 +64,8 @@ const setResponse = (html, preloadedState, manifest) => {
             <div id="app">${html}</div>
             <script>
                 window.__PRELOADED_STATE__ = ${JSON.stringify(
-                    preloadedState
-                ).replace(/</g, "\\u003c")}
+        preloadedState
+    ).replace(/</g, "\\u003c")}
             </script>
             <script src=${mainBuild} type="text/javascript"></script>
         </body>
